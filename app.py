@@ -111,92 +111,92 @@ with st.sidebar:
     """, unsafe_allow_html=True)
     st.subheader("Segundo paso: selecciona los parametros para traducción")
       
-      try:
-          os.mkdir("temp")
-      except:
-          pass
+    try:
+        os.mkdir("temp")
+    except:
+        pass
       #st.title("Text to speech")
-      translator = Translator()
+    translator = Translator()
       
       #text = st.text_input("Enter text")
-      in_lang = st.selectbox(
-          "Seleccione el lenguaje de entrada",
-          ("Ingles", "Español", "Bengali", "koreano", "Mandarin", "Japones"),
-      )
-      if in_lang == "Ingles":
-          input_language = "en"
-      elif in_lang == "Español":
-          input_language = "es"
-      elif in_lang == "Bengali":
-          input_language = "bn"
-      elif in_lang == "koreano":
-          input_language = "ko"
-      elif in_lang == "Mandarin":
-          input_language = "zh-cn"
-      elif in_lang == "Japones":
-          input_language = "ja"
+    in_lang = st.selectbox(
+        "Seleccione el lenguaje de entrada",
+        ("Ingles", "Español", "Bengali", "koreano", "Mandarin", "Japones"),
+    )
+    if in_lang == "Ingles":
+        input_language = "en"
+    elif in_lang == "Español":
+        input_language = "es"
+    elif in_lang == "Bengali":
+        input_language = "bn"
+    elif in_lang == "koreano":
+        input_language = "ko"
+    elif in_lang == "Mandarin":
+        input_language = "zh-cn"
+    elif in_lang == "Japones":
+        input_language = "ja"
       
-      out_lang = st.selectbox(
-          "Select your output language",
-          ("Ingles", "Español", "Bengali", "koreano", "Mandarin", "Japones"),
-      )
-      if out_lang == "Ingles":
-          output_language = "en"
-      elif out_lang == "Español":
-          output_language = "es"
-      elif out_lang == "Bengali":
-          output_language = "bn"
-      elif out_lang == "koreano":
-          output_language = "ko"
-      elif out_lang == "Chinese":
-          output_language = "zh-cn"
-      elif out_lang == "Japones":
-          output_language = "ja"
+    out_lang = st.selectbox(
+        "Select your output language",
+        ("Ingles", "Español", "Bengali", "koreano", "Mandarin", "Japones"),
+    )
+    if out_lang == "Ingles":
+        output_language = "en"
+    elif out_lang == "Español":
+        output_language = "es"
+    elif out_lang == "Bengali":
+        output_language = "bn"
+    elif out_lang == "koreano":
+        output_language = "ko"
+    elif out_lang == "Chinese":
+        output_language = "zh-cn"
+    elif out_lang == "Japones":
+        output_language = "ja"
       
-      english_accent = st.selectbox(
-          "Seleccione el acento",
-          (
-              "Default",
-              "India",
-              "United Kingdom",
-              "United States",
-              "Canada",
-              "Australia",
-              "Ireland",
-              "South Africa",
-          ),
-      )
+    english_accent = st.selectbox(
+        "Seleccione el acento",
+        (
+            "Default",
+            "India",
+            "United Kingdom",
+            "United States",
+            "Canada",
+            "Australia",
+            "Ireland",
+            "South Africa",
+        ),
+    )
       
-      if english_accent == "Default":
-          tld = "com"
-      elif english_accent == "India":
-          tld = "co.in"
+    if english_accent == "Default":
+        tld = "com"
+    elif english_accent == "India":
+        tld = "co.in"
       
-      elif english_accent == "United Kingdom":
-          tld = "co.uk"
-      elif english_accent == "United States":
-          tld = "com"
-      elif english_accent == "Canada":
-          tld = "ca"
-      elif english_accent == "Australia":
-          tld = "com.au"
-      elif english_accent == "Ireland":
-          tld = "ie"
-      elif english_accent == "South Africa":
-          tld = "co.za"
+    elif english_accent == "United Kingdom":
+        tld = "co.uk"
+    elif english_accent == "United States":
+        tld = "com"
+    elif english_accent == "Canada":
+        tld = "ca"
+    elif english_accent == "Australia":
+        tld = "com.au"
+    elif english_accent == "Ireland":
+        tld = "ie"
+    elif english_accent == "South Africa":
+        tld = "co.za"
 
-      display_output_text = st.checkbox("Mostrar texto")
+    display_output_text = st.checkbox("Mostrar texto")
 
-      if st.button("convert"):
-          result, output_text = text_to_speech(input_language, output_language, text, tld)
-          audio_file = open(f"temp/{result}.mp3", "rb")
-          audio_bytes = audio_file.read()
-          st.markdown(f"## Tu audio:")
-          st.audio(audio_bytes, format="audio/mp3", start_time=0)
+    if st.button("convert"):
+        result, output_text = text_to_speech(input_language, output_language, text, tld)
+        audio_file = open(f"temp/{result}.mp3", "rb")
+        audio_bytes = audio_file.read()
+        st.markdown(f"## Tu audio:")
+        st.audio(audio_bytes, format="audio/mp3", start_time=0)
       
-          if display_output_text:
-              st.markdown(f"## Texto de salida:")
-              st.write(f" {output_text}")
+        if display_output_text:
+            st.markdown(f"## Texto de salida:")
+            st.write(f" {output_text}")
 
 
 
