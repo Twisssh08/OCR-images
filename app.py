@@ -10,6 +10,17 @@ from PIL import Image
 from gtts import gTTS
 from googletrans import Translator
 
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #B4DD1E;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True  # 🔐 Habilita HTML (por defecto está desactivado)
+)
+
 
 text=" "
 
@@ -43,8 +54,8 @@ remove_files(7)
 
 
 
-st.title("Reconocimiento Óptico de Caracteres")
-st.subheader("Elige la fuente de la imágen, esta puede venir de la cámara o cargando un archivo")
+st.title("Traduccion de textos utilizando imagenes")
+st.subheader("Primer paso: introduce una foto que contenga texto, puede ser de tus archivos y de la camara")
 
 cam_ = st.checkbox("Usar Cámara")
 
@@ -57,7 +68,7 @@ with st.sidebar:
       st.subheader("Procesamiento para Cámara")
       filtro = st.radio("Filtro para imagen con cámara",('Sí', 'No'))
 
-bg_image = st.file_uploader("Cargar Imagen:", type=["png", "jpg"])
+bg_image = st.file_uploader("Cargar Imagen (.png o .jpg):", type=["png", "jpg"])
 if bg_image is not None:
     uploaded_file=bg_image
     st.image(uploaded_file, caption='Imagen cargada.', use_column_width=True)
@@ -90,7 +101,7 @@ if img_file_buffer is not None:
     st.write(text) 
 
 with st.sidebar:
-      st.subheader("Parámetros de traducción")
+      st.subheader("Segundo paso: selecciona los parametros para traducción")
       
       try:
           os.mkdir("temp")
