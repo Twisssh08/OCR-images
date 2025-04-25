@@ -101,6 +101,14 @@ if img_file_buffer is not None:
     st.write(text) 
 
 with st.sidebar:
+    st.markdown("""
+        <style>
+        /* Cambia el fondo del sidebar */
+        [data-testid="stSidebar"] {
+            background-color: #B4DD1E;  /* color suave, puedes cambiarlo */
+        }
+        </style>
+        """, unsafe_allow_html=True)
       st.subheader("Segundo paso: selecciona los parametros para traducción")
       
       try:
